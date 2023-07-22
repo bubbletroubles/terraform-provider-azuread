@@ -406,6 +406,20 @@ func conditionalAccessPolicyResource() *schema.Resource {
 								ValidateDiagFunc: validate.NoEmptyStrings,
 							},
 						},
+
+						"authentication_strength": {
+							Type:     schema.TypeList,
+							Optional: true,
+							MaxItems: 1,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"id": {
+										Type:             schema.TypeString,
+										ValidateDiagFunc: validate.NoEmptyStrings,
+									},
+								},
+							},
+						},
 					},
 				},
 			},
