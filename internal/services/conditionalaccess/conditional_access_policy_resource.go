@@ -373,7 +373,7 @@ func conditionalAccessPolicyResource() *schema.Resource {
 
 						"built_in_controls": {
 							Type:     schema.TypeList,
-							Required: true,
+							Optional: true,
 							Elem: &schema.Schema{
 								Type: schema.TypeString,
 								ValidateFunc: validation.StringInSlice([]string{
