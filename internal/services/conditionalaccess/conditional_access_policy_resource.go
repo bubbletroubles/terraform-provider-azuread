@@ -416,6 +416,7 @@ func conditionalAccessPolicyResource() *schema.Resource {
 									"id": {
 										Type:             schema.TypeString,
 										ValidateDiagFunc: validate.NoEmptyStrings,
+										Optional: true,
 									},
 								},
 							},
