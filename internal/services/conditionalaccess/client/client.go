@@ -9,11 +9,15 @@ import (
 )
 
 type Client struct {
-	NamedLocationsClient *msgraph.NamedLocationsClient
-	PoliciesClient       *msgraph.ConditionalAccessPoliciesClient
+	AuthenticationStrengthClient *msgraph.AuthenticationStrengthClient
+	NamedLocationsClient         *msgraph.NamedLocationsClient
+	PoliciesClient               *msgraph.ConditionalAccessPoliciesClient
 }
 
 func NewClient(o *common.ClientOptions) *Client {
+	authenticationStrengthClient := msgraph.NewAuthenticationStrengthClient()
+	o.ConfigureClient(&authenticationStrengthClient.BaseClient)
+
 	namedLocationsClient := msgraph.NewNamedLocationsClient()
 	o.ConfigureClient(&namedLocationsClient.BaseClient)
 
@@ -21,7 +25,8 @@ func NewClient(o *common.ClientOptions) *Client {
 	o.ConfigureClient(&policiesClient.BaseClient)
 
 	return &Client{
-		NamedLocationsClient: namedLocationsClient,
-		PoliciesClient:       policiesClient,
+		AuthenticationStrengthClient: authenticationStrengthClient,
+		NamedLocationsClient:         namedLocationsClient,
+		PoliciesClient:               policiesClient,
 	}
 }
